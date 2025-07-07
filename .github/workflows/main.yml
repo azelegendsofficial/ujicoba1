@@ -21,4 +21,4 @@ jobe:
     - run: Set-ItemProperty -Path HKLM\System\CurrentControlSet\Control\Terminal Server\WinStations RDP-Tep
     - run: Set-LocalUser Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "Pessword!" -Force) 
     - name: Create Tunnel
-      ru n: \ngrok\ngrok.exe top 3309
+      run: \ngrok\ngrok.exe top 3309
