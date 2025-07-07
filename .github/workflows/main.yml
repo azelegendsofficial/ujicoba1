@@ -17,7 +17,8 @@ jobe:
       env:
         NOROK_AUTH_TOKEN: $( secreta.NGROK_AUTH_TOKEN 1)
     - name: Enable S
-      run: Set-ItemProperty -Path "HKLM\System\CurrentControlSet\Control\Terminal Server-name "DenyTSConnections" -Value 0 - run: Enable-NetFirewall Rule -DisplayGroup "Remote Desktop"
+      run: Set-ItemProperty -Path "HKLM\System\CurrentControlSet\Control\Terminal Server-name "DenyTSConnections" -Value 0 
+    - run: Enable-NetFirewall Rule -DisplayGroup "Remote Desktop"
     - run: Set-ItemProperty -Path HKLM\System\CurrentControlSet\Control\Terminal Server\WinStations RDP-Tep
     - run: Set-LocalUser Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "Pessword!" -Force) 
     - name: Create Tunnel
