@@ -15,11 +15,11 @@ jobe:
     - name: Auth
       run: .\ngrok\ngrok.exe authtoken SERVINGROK_AUTH_TOKEN
       env:
-        NOROK_AUTH_TOKEN: $( secreta.NGROK_AUTH_TOKEN 1)
+        NOROK_AUTH_TOKEN: ${{ secreta.NGROK_AUTH_TOKEN 1}}
     - name: Enable S
       run: Set-ItemProperty -Path "HKLM\System\CurrentControlSet\Control\Terminal Server-name "DenyTSConnections" -Value 0 
     - run: Enable-NetFirewall Rule -DisplayGroup "Remote Desktop"
-    - run: Set-ItemProperty -Path HKLM\System\CurrentControlSet\Control\Terminal Server\WinStations RDP-Tep
+    - run: Set-ItemProperty -Path HKLM\System\CurrentControlSet\Control\Terminal Server\WinStations RDP-Tep -name "UserAuthentication" -Value 1
     - run: Set-LocalUser Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "Pessword!" -Force) 
     - name: Create Tunnel
       run: \ngrok\ngrok.exe top 3309
